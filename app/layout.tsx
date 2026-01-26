@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
 
 
 
@@ -26,12 +24,8 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest"></link>
         <body className="bg-white dark:bg-black transition-colors duration-300">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navbar />
 
-            <main className="pt-32 pb-20">
-              {children}
-            </main>
-            <Footer />
+            {children}
 
           </ThemeProvider>
         </body>
