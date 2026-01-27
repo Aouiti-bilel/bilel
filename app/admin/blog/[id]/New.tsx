@@ -142,6 +142,8 @@ export default function NewPost() {
                         <Label>Contenu</Label>
                         <Editor
                             apiKey="rk0j2ac4vzoanqc5lmp4mqu780w0t7bnlxjrk86caur5bd7l"
+                            // tinymceScriptSrc="/tinymce/tinymce.min.js"
+
                             init={{
                                 height: 400,
                                 menubar: false,

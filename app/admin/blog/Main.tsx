@@ -1,23 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Blog } from "@/app/generated/prisma/browser";
+
+import { useDebounce } from "use-debounce";
+import { useSearchParams, useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 
 
 interface Props {
     posts: Blog[];
     totalPages: number;
+    page: number;
 }
 
-export default function Main({ posts, totalPages }: Props) {
-    const [search, setSearch] = useState("");
-    const [page, setPage] = useState(1);
+export default function Main({ posts, totalPages, page }: Props) {
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
+    const [search, setSearch] = useState(searchParams.get("q") || "");
+    const [debouncedSearch] = useDebounce(search, 400);
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (debouncedSearch) {
+            params.set("q", debouncedSearch);
+        } else {
+            params.delete("q");
+        }
+
+        router.replace(`?${params.toString()}`, { scroll: false });
+    }, [debouncedSearch, router, searchParams]);
+    const goToPage = (newPage: number) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("page", String(newPage));
+        router.replace(`?${params.toString()}`, { scroll: false });
+    };
     return (
         <div className="space-y-6">
             {/* Search */}
@@ -53,30 +77,25 @@ export default function Main({ posts, totalPages }: Props) {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center items-center space-x-2">
+            <div className="flex justify-end items-center space-x-2">
                 <Button
+                    variant="outline"
                     size="sm"
                     disabled={page <= 1}
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    onClick={() => goToPage(page - 1)}
                 >
-                    Previous
+                    <ChevronLeft className="h-4 w-4" />
+                    Précédent
                 </Button>
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <Button
-                        key={i + 1}
-                        size="sm"
-                        variant={i + 1 === page ? "default" : "outline"}
-                        onClick={() => setPage(i + 1)}
-                    >
-                        {i + 1}
-                    </Button>
-                ))}
+
                 <Button
+                    variant="outline"
                     size="sm"
                     disabled={page >= totalPages}
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    onClick={() => goToPage(page + 1)}
                 >
-                    Next
+                    Suivant
+                    <ChevronRight className="h-4 w-4" />
                 </Button>
             </div>
         </div>

@@ -9,7 +9,7 @@ type Props = {
         page?: string;
     };
 };
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 export default async function BlogListPage(props: Props) {
     const searchParams = await props?.searchParams
@@ -41,7 +41,9 @@ export default async function BlogListPage(props: Props) {
     ]);
 
     const totalPages = Math.ceil(total / PAGE_SIZE);
+    console.log("Total posts:", posts);
+    console.log("Total pages:", totalPages);
     return (
-        <Main posts={posts} totalPages={totalPages} />
+        <Main posts={posts} totalPages={totalPages} page={page} />
     );
 }
