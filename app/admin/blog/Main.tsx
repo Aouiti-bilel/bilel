@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Blog } from "@/lib/generated/prisma/browser";
+import { Blog } from "@/app/generated/prisma/browser";
 
 
 
