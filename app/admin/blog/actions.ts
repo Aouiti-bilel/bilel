@@ -123,16 +123,20 @@ export async function deleteBlog(blogId: string) {
     // refresh admin list
     revalidatePath("/admin/blog");
 }
-// export async function toggleBlogStatus(
-//   blogId: string,
-//   nextStatus: "PUBLISHED" | "DRAFT"
-// ) {
-//   await prisma.blog.update({
-//     where: { id: blogId },
-//     data: {
-//       status: nextStatus,
-//     },
-//   });
+export async function toggleBlogStatus(blogId: string) {
+    if (!blogId) {
+        throw new Error("Blog ID is required");
+    }
+    const blog = await prisma.blog.findUnique({
+        where: { id: blogId },
+    });
 
-//   revalidatePath("/admin/blogs");
-// }
+    await prisma.blog.update({
+        where: { id: blogId },
+        data: {
+            status: !blog?.status,
+        },
+    });
+
+    revalidatePath("/admin/blogs");
+}

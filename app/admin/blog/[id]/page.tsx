@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import NewPost from "./New";
+import EditPost from "./EditPost";
 // import EditPost from "./EditPost";
 
 type Props = {
@@ -19,6 +20,5 @@ export default async function Blog(props: Props) {
     if (!blog) {
         return <div>Article non trouvé</div>;
     }
-    return <div>Afficher l`article {blog.title} ici.</div>;
-    //  <EditPost blog={blog} />;
+    return <EditPost blog={blog} />;
 }
