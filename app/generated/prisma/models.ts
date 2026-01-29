@@ -10,4 +10,5 @@
  */
 export type * from './models/User'
 export type * from './models/Blog'
+export type * from './models/Series'
 export type * from './commonInputTypes'

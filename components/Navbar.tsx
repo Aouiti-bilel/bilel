@@ -32,6 +32,7 @@ export default function Navbar() {
           {/* DESKTOP LINKS */}
           <div className="hidden md:flex items-center space-x-8 text-sm">
             <Link href="/" className="hover:opacity-70 transition">Home</Link>
+            <Link href="/blog" className="hover:opacity-70 transition">Blog</Link>
             <Link href="/contact" className="hover:opacity-70 transition">Contact</Link>
           </div>
 

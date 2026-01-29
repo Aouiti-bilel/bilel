@@ -10,15 +10,17 @@ import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
 import { Upload, Trash2 } from "lucide-react";
 import { updateBlog } from "../actions";
-import { Blog } from "@/app/generated/prisma/browser";
+import { Blog, Series } from "@/app/generated/prisma/browser";
+import { SeriesField } from "../SeriesField";
 
 
 
 type Props = {
     blog: Blog;
+    series: Series[];
 };
 
-export default function EditPost({ blog }: Props) {
+export default function EditPost({ blog, series }: Props) {
     const [newImages, setNewImages] = useState<File[]>([]);
     const [previews, setPreviews] = useState<string[]>([]);
     const [existingImages, setExistingImages] = useState<string[]>(blog.images);
@@ -63,7 +65,7 @@ export default function EditPost({ blog }: Props) {
                     {/* TITLE */}
                     <div className="space-y-1">
                         <Label>Titre</Label>
-                        <Input required name="title" defaultValue={blog.title}  />
+                        <Input required name="title" defaultValue={blog.title} />
                     </div>
 
                     {/* DESCRIPTION */}
@@ -153,6 +155,7 @@ export default function EditPost({ blog }: Props) {
                             }}
                         />
                     </div>
+                    <SeriesField series={series} />
 
                     {/* ACTIONS */}
                     <div className="flex justify-end gap-2 pt-4">

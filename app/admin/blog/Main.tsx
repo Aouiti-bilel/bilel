@@ -11,6 +11,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { PublishToggle } from "./PublishToggle";
 import { DeleteBlogButton } from "./DeleteBlogButton";
+import { SeriesField } from "./SeriesField";
 
 interface Props {
     posts: Blog[];
@@ -43,7 +44,6 @@ export default function Main({ posts, totalPages, page }: Props) {
         params.set("page", String(newPage));
         router.replace(`?${params.toString()}`, { scroll: false });
     };
-
     return (
         <div className="space-y-8">
             {/* Header */}
@@ -70,6 +70,12 @@ export default function Main({ posts, totalPages, page }: Props) {
                         <Button variant="outline" className="gap-2" >
                             <Plus className="h-4 w-4" />
                             New post
+                        </Button>
+                    </Link>
+                    <Link href="/admin/serie/new">
+                        <Button variant="outline" className="gap-2" >
+                            <Plus className="h-4 w-4" />
+                            New Serie
                         </Button>
                     </Link>
                 </div>

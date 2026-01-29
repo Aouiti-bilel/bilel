@@ -27,3 +27,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Blog = Prisma.BlogModel
+/**
+ * Model Series
+ * 
+ */
+export type Series = Prisma.SeriesModel

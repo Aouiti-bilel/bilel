@@ -41,8 +41,6 @@ export default async function BlogListPage(props: Props) {
     ]);
 
     const totalPages = Math.ceil(total / PAGE_SIZE);
-    console.log("Total posts:", posts);
-    console.log("Total pages:", totalPages);
     return (
         <Main posts={posts} totalPages={totalPages} page={page} />
     );
