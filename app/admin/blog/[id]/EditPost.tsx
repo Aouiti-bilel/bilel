@@ -149,7 +149,7 @@ export default function EditPost({ blog, series }: Props) {
 
                             init={{
                                 height: 400,
-                                menubar: false,
+                                menubar: 'file edit view insert format tools table tc help',
                                 // plugins: ["lists", "link", "image", "table", "code"],
                                 plugins: 'preview visualblocks visualchars fullscreen image link media  codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   imagetools textpattern noneditable help    quickbars  emoticons  ',
                                 toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist  | forecolor backcolor casechange   removeformat | pagebreak | charmap emoticons | fullscreen  preview | image media  anchor codesample | a11ycheck ltr rtl |  ',

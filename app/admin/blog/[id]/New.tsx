@@ -148,7 +148,6 @@ export default function NewPost({ series }: { series: Series[] }) {
 
                             init={{
                                 height: 400,
-                                menubar: false,
                                 plugins: [
                                     "lists",
                                     "link",
@@ -158,6 +157,8 @@ export default function NewPost({ series }: { series: Series[] }) {
                                     "wordcount",
                                     "codesample"
                                 ],
+                                menubar: 'file edit view insert format tools table tc help',
+
                                 toolbar:
                                     "undo redo | formatselect | bold italic underline | bullist numlist | link image | codesample",
                                 skin: "oxide",
