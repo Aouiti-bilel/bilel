@@ -45,3 +45,16 @@ export async function createSeries(_: ActionState, formData: FormData): Promise<
   revalidatePath("/admin/series");
   return { success: true };
 }
+
+export async function deleteSerie(serieId: string) {
+    if (!serieId) {
+        throw new Error("Serie ID is required");
+    }
+
+    await prisma.series.delete({
+        where: { id: serieId },
+    });
+
+    // refresh admin list
+    revalidatePath("/admin/serie");
+}

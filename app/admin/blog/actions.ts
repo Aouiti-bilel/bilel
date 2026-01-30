@@ -82,6 +82,7 @@ export async function updateBlog(_: ActionState, formData: FormData) {
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const content = formData.get("content") as string;
+    const seriesId = formData.get("seriesId") as string;
 
     const existingImages = JSON.parse(
         formData.get("existingImages") as string
@@ -98,13 +99,13 @@ export async function updateBlog(_: ActionState, formData: FormData) {
         });
         uploadedImages.push(blob.url);
     }
-
     await prisma.blog.update({
         where: { id },
         data: {
             title,
             description,
             content,
+            seriesId,
             images: [...existingImages, ...uploadedImages],
         },
     });
@@ -121,7 +122,7 @@ export async function deleteBlog(blogId: string) {
     });
 
     // refresh admin list
-    revalidatePath("/admin/blog");
+    revalidatePath(`/admin/blog/${blogId}`);
 }
 export async function toggleBlogStatus(blogId: string) {
     if (!blogId) {

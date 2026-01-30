@@ -1,24 +1,26 @@
-'use client';
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Blog } from "@/app/generated/prisma/browser";
-
-
+import { useEffect } from "react";
+import Prism from "@/lib/prism";
 
 type Props = {
     post: Blog;
     relatedPosts: { id: string; title: string }[];
-    mdxSource: MDXRemoteSerializeResult;
 };
-export default  function BlogDetailPage({ post, relatedPosts, mdxSource }: Props) {
 
-
+export default function BlogDetailPage({ post, relatedPosts }: Props) {
+    useEffect(() => {
+        Prism.highlightAll();
+    }, []);
     return (
         <main className="container mx-auto py-16 space-y-10">
             {/* Header */}
             <div className="mx-auto max-w-3xl space-y-4">
                 <h1 className="text-4xl font-bold">{post.title}</h1>
+
                 <p className="text-sm text-muted-foreground">
                     Published on {new Date(post.createdAt).toLocaleDateString()}
                 </p>
@@ -34,12 +36,16 @@ export default  function BlogDetailPage({ post, relatedPosts, mdxSource }: Props
                     </div>
                 )}
 
-                <p className="mt-4 text-lg text-muted-foreground">{post.description}</p>
+                <p className="mt-4 text-lg text-muted-foreground">
+                    {post.description}
+                </p>
             </div>
 
             {/* Content */}
             <article className="mx-auto max-w-3xl prose dark:prose-invert">
-                <MDXRemote {...mdxSource} />
+                <div
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                />
             </article>
 
             {/* Related posts */}

@@ -1,8 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import "prismjs/themes/prism-tomorrow.css";
 
-export default function BlogLayout({
+export default function SeriesLayout({
     children,
 }: {
     children: React.ReactNode;

@@ -156,16 +156,25 @@ export default function NewPost({ series }: { series: Series[] }) {
                                     "table",
                                     "code",
                                     "wordcount",
+                                    "codesample"
                                 ],
                                 toolbar:
-                                    "undo redo | formatselect | bold italic underline | bullist numlist | link image | code",
+                                    "undo redo | formatselect | bold italic underline | bullist numlist | link image | codesample",
                                 skin: "oxide",
                                 content_css: "default",
+                                codesample_languages: [
+                                    { text: "JavaScript", value: "javascript" },
+                                    { text: "TypeScript", value: "typescript" },
+                                    { text: "HTML", value: "markup" },
+                                    { text: "CSS", value: "css" },
+                                    { text: "JSON", value: "json" },
+                                    { text: "Bash", value: "bash" },
+                                ],
                             }}
                             textareaName="content"
                         />
                     </div>
-                    <SeriesField series={series} />
+                    <SeriesField series={series} defaultValue={"None"} />
 
                     {/* ACTIONS */}
                     <div className="flex justify-end gap-2 pt-4">

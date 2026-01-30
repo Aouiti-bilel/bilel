@@ -11,7 +11,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { PublishToggle } from "./PublishToggle";
 import { DeleteBlogButton } from "./DeleteBlogButton";
-import { SeriesField } from "./SeriesField";
 
 interface Props {
     posts: Blog[];

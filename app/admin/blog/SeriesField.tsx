@@ -9,7 +9,11 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-export function SeriesField({ series, defaultValue }: { series: Series[], defaultValue?: string }) {
+type SeriesFieldProps = {
+    series: Series[],
+    defaultValue: string | null
+}
+export function SeriesField({ series, defaultValue }: SeriesFieldProps) {
 
 
     return (
@@ -17,7 +21,7 @@ export function SeriesField({ series, defaultValue }: { series: Series[], defaul
             <label className="text-sm font-medium">Series</label>
 
             <Select
-                name="seriesSlug"
+                name="seriesId"
                 defaultValue={defaultValue ?? "none"}
             >
                 <SelectTrigger>
@@ -28,7 +32,7 @@ export function SeriesField({ series, defaultValue }: { series: Series[], defaul
                     <SelectItem value="none">None</SelectItem>
 
                     {series.map((s) => (
-                        <SelectItem key={s.slug} value={s.slug}>
+                        <SelectItem key={s.id} value={s.id}>
                             {s.title}
                         </SelectItem>
                     ))}

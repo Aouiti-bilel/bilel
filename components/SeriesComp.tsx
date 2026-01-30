@@ -14,17 +14,18 @@ interface Props {
 export default function SeriesComp({ series }: Props) {
   if (!series.length) return null;
   return (
-    <section className="space-y-8 py-12">
-      <h2 className="text-3xl font-bold">Technical References</h2>
-      <p className="text-muted-foreground max-w-xl">
-        Explore our structured series of technical articles, organized to help you understand complex topics clearly.
-      </p>
-
+    <section className="container mx-auto px-4 py-20">
+      <div className="mb-8 space-y-2 text-center">
+        <h2 className="text-3xl font-bold">Technical References</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Explore our structured series of technical articles, organized to help you understand complex topics clearly.
+        </p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {series.map((s) => (
           <Link
             key={s.id}
-            href={`/blog/series/${s.slug}`}
+            href={`/series/${s.slug}`}
             className="group block overflow-hidden rounded-2xl border border-border bg-background shadow transition-all duration-300 hover:border-primary hover:shadow-lg"
           >
             {s.coverImage && (

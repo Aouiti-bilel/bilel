@@ -2,8 +2,6 @@
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import BlogDetailPage from "./Main";
-import { parseMDX } from "@/lib/mdx";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 interface Props {
     params: { id: string };
@@ -22,10 +20,9 @@ export default async function BlogDetail({ params }: Props) {
         take: 3,
         select: { title: true, id: true },
     });
-    
-    if (!post || !post.status) return notFound();
-    const mdxSource: MDXRemoteSerializeResult = await parseMDX(post.content);
 
-    return <BlogDetailPage post={post} relatedPosts={relatedPosts} mdxSource={mdxSource} />;
+    if (!post || !post.status) return notFound();
+
+    return <BlogDetailPage post={post} relatedPosts={relatedPosts} />;
 
 }

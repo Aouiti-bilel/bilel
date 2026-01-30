@@ -121,7 +121,7 @@ export default function EditPost({ blog, series }: Props) {
                                 accept="image/*"
                                 className="sr-only"
                                 onChange={handleImagesChange}
-                                required
+                                required={false}
                             />
                         </label>
 
@@ -146,16 +146,23 @@ export default function EditPost({ blog, series }: Props) {
                             apiKey="rk0j2ac4vzoanqc5lmp4mqu780w0t7bnlxjrk86caur5bd7l"
                             textareaName="content"
                             initialValue={blog.content}
+
                             init={{
                                 height: 400,
                                 menubar: false,
-                                plugins: ["lists", "link", "image", "table", "code"],
-                                toolbar:
-                                    "undo redo | formatselect | bold italic | bullist numlist | link image | code",
+                                // plugins: ["lists", "link", "image", "table", "code"],
+                                plugins: 'preview visualblocks visualchars fullscreen image link media  codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   imagetools textpattern noneditable help    quickbars  emoticons  ',
+                                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist  | forecolor backcolor casechange   removeformat | pagebreak | charmap emoticons | fullscreen  preview | image media  anchor codesample | a11ycheck ltr rtl |  ',
+                                mobile: {
+                                    theme: 'mobile',
+                                    toolbar: ['undo', 'bold']
+                                },
+                                theme_advanced_toolbar_align: 'center',
+                                autosave_interval: '3s',
                             }}
                         />
                     </div>
-                    <SeriesField series={series} />
+                    <SeriesField series={series} defaultValue={blog.seriesId} />
 
                     {/* ACTIONS */}
                     <div className="flex justify-end gap-2 pt-4">
