@@ -1,11 +1,12 @@
 import prisma from "@/lib/prisma";
 import BlogGrid from "./BlogGrid";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Blog",
-  description: "Articles, insights and updates",
+export const metadata: Metadata = {
+  title: "Blog | Bilel Laouiti",
+  description:
+    "Technical articles about JavaScript, backend engineering, system design, and software architecture.",
 };
-
 export default async function BlogPage() {
   const posts = await prisma.blog.findMany({
     where: {

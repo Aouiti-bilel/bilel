@@ -11,70 +11,51 @@ type Props = {
     relatedPosts: { id: string; title: string }[];
 };
 
-export default function BlogDetailPage({ post, relatedPosts }: Props) {
+
+
+const BlogDetails = ({ post, relatedPosts }: Props) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
     return (
-        <main className="container mx-auto py-16 space-y-10">
-            {/* Header */}
-            <div className="mx-auto space-y-4">
-                <h1 className="text-4xl font-bold">{post.title}</h1>
-
-                <p className="text-sm text-muted-foreground">
-                    Published on {new Date(post.createdAt).toLocaleDateString()}
-                </p>
-
-                {post.images?.[0] && (
-                    <div className="relative h-72 w-full overflow-hidden rounded-2xl">
-                        <Image
-                            src={post.images[0]}
-                            alt={post.title}
-                            fill
-                            className="object-cover"
-                        />
+        <article className="min-h-screen  pb-20">
+            <header className="pt-16 pb-10 px-4 max-w-4xl mx-auto text-center">
+                <h1 className="text-4xl md:text-5xl font-extrabold  tracking-tight mb-6">
+                    {post.title}
+                </h1>
+                <div className="flex items-center justify-center space-x-4">
+                    <img
+                        src="/me.png"
+                        alt="Author"
+                        className="w-12 h-12 rounded-full border border-gray-200"
+                    />
+                    <div className="text-left">
+                        <p className="text-sm font-semibold ">Bilel Laouiti</p>
+                        <p className="text-xs text-gray-500">{new Date(post.createdAt).toLocaleDateString()} </p>
                     </div>
-                )}
+                </div>
+            </header>
 
-                <p className="mt-4 text-lg text-muted-foreground">
-                    {post.description}
-                </p>
-            </div>
+            <main className="max-w-5xl mx-auto px-4 mb-12">
+                <div className="relative w-full h-[400px]   ">
+                    <Image
+                        src={post.images[0]}
+                        alt={post.title}
+                        fill
 
-            {/* Content */}
-            <article className="mx-auto max-w-3xl prose dark:prose-invert">
-                <div
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-            </article>
+                        className="contain rounded-2xl shadow-lg"
+                    />
+                </div>
+                <div className="lg:col-span-6 prose prose-lg prose- max-w-none dark:prose-invert">
+                    <div
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
 
-            {/* Related posts */}
-            {relatedPosts.length > 0 && (
-                <section className="mx-auto max-w-3xl space-y-4">
-                    <h2 className="text-xl font-semibold">Related Posts</h2>
-                    <ul className="space-y-2">
-                        {relatedPosts.map((p) => (
-                            <li key={p.id}>
-                                <Link
-                                    href={`/blog/${p.id}`}
-                                    className="text-primary hover:underline"
-                                >
-                                    {p.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            )}
+                </div>
+            </main>
 
-            {/* Back link */}
-            <div className="mx-auto max-w-3xl">
-                <Link href="/blog">
-                    <button className="mt-6 rounded-lg border px-4 py-2 text-sm hover:bg-muted transition">
-                        ← Back to Blog
-                    </button>
-                </Link>
-            </div>
-        </main>
-    );
+        </article>
+    )
+
 }
+export default BlogDetails

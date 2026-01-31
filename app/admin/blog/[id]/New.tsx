@@ -147,7 +147,7 @@ export default function NewPost({ series }: { series: Series[] }) {
                             // tinymceScriptSrc="/tinymce/tinymce.min.js"
 
                             init={{
-                                height: 400,
+                                height: 800,
                                 plugins: [
                                     "lists",
                                     "link",
@@ -155,12 +155,14 @@ export default function NewPost({ series }: { series: Series[] }) {
                                     "table",
                                     "code",
                                     "wordcount",
-                                    "codesample"
+                                    "codesample",
+                                    "fontfamily"
                                 ],
                                 menubar: 'file edit view insert format tools table tc help',
-
+                                font_family_formats:
+                                    "Inter=Inter,system-ui; Georgia=Georgia,serif; Monospace=JetBrains Mono,monospace",
                                 toolbar:
-                                    "undo redo | formatselect | bold italic underline | bullist numlist | link image | codesample",
+                                    "undo redo | formatselect | fontfamily | bold italic underline | bullist numlist | link image | codesample",
                                 skin: "oxide",
                                 content_css: "default",
                                 codesample_languages: [
@@ -171,6 +173,37 @@ export default function NewPost({ series }: { series: Series[] }) {
                                     { text: "JSON", value: "json" },
                                     { text: "Bash", value: "bash" },
                                 ],
+                                content_style: `
+      body {
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+        font-size: 16px;
+        line-height: 1.75;
+        color: #0f172a;
+      }
+
+      h1, h2, h3 {
+        font-weight: 600;
+        margin-top: 2em;
+        margin-bottom: 0.6em;
+      }
+
+      p {
+        margin: 1em 0;
+      }
+
+      pre {
+        background: #0f172a;
+        color: #e5e7eb;
+        padding: 1em;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+      }
+    `,
                             }}
                             textareaName="content"
                         />
