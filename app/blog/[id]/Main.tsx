@@ -18,7 +18,7 @@ export default function BlogDetailPage({ post, relatedPosts }: Props) {
     return (
         <main className="container mx-auto py-16 space-y-10">
             {/* Header */}
-            <div className="mx-auto max-w-3xl space-y-4">
+            <div className="mx-auto space-y-4">
                 <h1 className="text-4xl font-bold">{post.title}</h1>
 
                 <p className="text-sm text-muted-foreground">

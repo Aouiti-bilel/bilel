@@ -148,7 +148,7 @@ export default function EditPost({ blog, series }: Props) {
                             initialValue={blog.content}
 
                             init={{
-                                height: 400,
+                                height: 800,
                                 menubar: 'file edit view insert format tools table tc help',
                                 // plugins: ["lists", "link", "image", "table", "code"],
                                 plugins: 'preview visualblocks visualchars fullscreen image link media  codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   imagetools textpattern noneditable help    quickbars  emoticons  ',
