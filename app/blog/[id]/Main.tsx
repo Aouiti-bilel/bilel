@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Blog } from "@/app/generated/prisma/browser";
 import { useEffect } from "react";
 import Prism from "@/lib/prism";
+import parse from 'html-react-parser';
 
 type Props = {
     post: Blog;
@@ -14,9 +15,9 @@ type Props = {
 
 
 const BlogDetails = ({ post, relatedPosts }: Props) => {
-    useEffect(() => {
-        Prism.highlightAll();
-    }, []);
+    // useEffect(() => {
+    //     Prism.highlightAll();
+    // }, []);
     return (
         <article className="min-h-screen  pb-20">
             <header className="pt-16 pb-10 px-4 max-w-4xl mx-auto text-center">
@@ -46,12 +47,10 @@ const BlogDetails = ({ post, relatedPosts }: Props) => {
                         className="contain rounded-2xl shadow-lg"
                     />
                 </div>
-                <div className="lg:col-span-6 prose prose-lg prose- max-w-none dark:prose-invert">
-                    <div
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-
-                </div>
+                <article
+                    className="mce-content-body"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                />
             </main>
 
         </article>

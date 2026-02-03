@@ -143,6 +143,7 @@ export default function EditPost({ blog, series }: Props) {
                     <div className="space-y-2">
                         <Label>Contenu</Label>
                         <Editor
+
                             apiKey="rk0j2ac4vzoanqc5lmp4mqu780w0t7bnlxjrk86caur5bd7l"
                             textareaName="content"
                             initialValue={blog.content}
@@ -159,6 +160,8 @@ export default function EditPost({ blog, series }: Props) {
                                 },
                                 theme_advanced_toolbar_align: 'center',
                                 autosave_interval: '3s',
+
+                                content_css: 'default'
                             }}
                         />
                     </div>
