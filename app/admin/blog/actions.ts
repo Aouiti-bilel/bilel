@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { slugifyFrench } from "@/lib/utils";
 import { put } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 
@@ -48,14 +49,16 @@ export async function createPost(
 
             imageUrls.push(blob.url);
         }
+        const slug = slugifyFrench(title);
 
         /* -------------------------
          * 3. Save blog in database
          * ------------------------- */
         await prisma.blog.create({
             data: {
-                authorId: "clh6j6px40000qzrmn2v1gn5y", // TODO: dynamic author
+                authorId: "1", // TODO: dynamic author
                 title,
+                slug,
                 description,
                 content,
                 images: imageUrls, // Prisma String[]
@@ -82,7 +85,10 @@ export async function updateBlog(_: ActionState, formData: FormData) {
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const content = formData.get("content") as string;
-    const seriesId = formData.get("seriesId") as string;
+    let seriesId = formData.get("seriesId") as string | null;
+    if (seriesId === "none") {
+        seriesId = null;
+    }
 
     const existingImages = JSON.parse(
         formData.get("existingImages") as string
@@ -90,25 +96,29 @@ export async function updateBlog(_: ActionState, formData: FormData) {
 
     const files = formData.getAll("images") as File[];
     const uploadedImages: string[] = [];
+    if (files.length > 0)
+        for (const file of files) {
+            if (file.size === 0) continue;
+            const blob = await put(file.name, file, {
+                access: "public",
+                addRandomSuffix: true,
+            });
+            uploadedImages.push(blob.url);
+        }
+    const slug = slugifyFrench(title);
 
-    for (const file of files) {
-        if (file.size === 0) continue;
-        const blob = await put(file.name, file, {
-            access: "public",
-            addRandomSuffix: true,
-        });
-        uploadedImages.push(blob.url);
-    }
     await prisma.blog.update({
         where: { id },
         data: {
             title,
             description,
+            slug,
             content,
             seriesId,
             images: [...existingImages, ...uploadedImages],
         },
     });
+    revalidatePath(`/admin/blog/${id}`);
 
     return { success: true };
 }

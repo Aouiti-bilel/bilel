@@ -8,12 +8,11 @@ import Prism from "@/lib/prism";
 
 type Props = {
     post: Blog;
-    relatedPosts: { id: string; title: string }[];
 };
 
 
 
-const BlogDetails = ({ post, relatedPosts }: Props) => {
+const BlogDetails = ({ post }: Props) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);

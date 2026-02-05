@@ -18,7 +18,7 @@ export default function BlogGrid({ posts }: { posts: Blog[] }) {
             {posts.map((post) => (
                 <Link
                     key={post.id}
-                    href={`/blog/${post.id}`}
+                    href={`/blog/${post.slug}`}
                     className="group overflow-hidden rounded-2xl border bg-card shadow-sm transition hover:shadow-lg"
                 >
                     {/* Image */}

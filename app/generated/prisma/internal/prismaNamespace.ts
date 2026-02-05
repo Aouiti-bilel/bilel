@@ -688,6 +688,7 @@ export const BlogScalarFieldEnum = {
   images: 'images',
   status: 'status',
   order: 'order',
+  slug: 'slug',
   authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

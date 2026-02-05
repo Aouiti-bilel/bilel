@@ -11,6 +11,7 @@ interface SeriesDetailsProps {
     posts: {
       id: string;
       title: string;
+      slug: string;
       description?: string | null;
       createdAt: Date;
     }[];
@@ -37,9 +38,10 @@ export default function SeriesDetails({ series }: SeriesDetailsProps) {
         <div className="space-y-3">
           <h1 className="text-4xl font-bold">{series.title}</h1>
           {series.description && (
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {series.description}
-            </p>
+           <p
+                    className="rich-content"
+                    dangerouslySetInnerHTML={{ __html: series.description }}
+                />      
           )}
         </div>
       </div>
@@ -54,7 +56,7 @@ export default function SeriesDetails({ series }: SeriesDetailsProps) {
               key={post.id}
               className="group rounded-xl border p-4 transition hover:border-primary hover:bg-muted/40"
             >
-              <Link href={`/blog/${post.id}`} className="flex gap-4">
+              <Link href={`/blog/${post.slug}`} className="flex gap-4">
                 {/* Index */}
                 <span className="text-sm font-mono text-muted-foreground">
                   {String(index + 1).padStart(2, "0")}

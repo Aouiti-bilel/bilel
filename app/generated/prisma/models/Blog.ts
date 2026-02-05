@@ -41,6 +41,7 @@ export type BlogMinAggregateOutputType = {
   content: string | null
   status: boolean | null
   order: number | null
+  slug: string | null
   authorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -54,6 +55,7 @@ export type BlogMaxAggregateOutputType = {
   content: string | null
   status: boolean | null
   order: number | null
+  slug: string | null
   authorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -68,6 +70,7 @@ export type BlogCountAggregateOutputType = {
   images: number
   status: number
   order: number
+  slug: number
   authorId: number
   createdAt: number
   updatedAt: number
@@ -91,6 +94,7 @@ export type BlogMinAggregateInputType = {
   content?: true
   status?: true
   order?: true
+  slug?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -104,6 +108,7 @@ export type BlogMaxAggregateInputType = {
   content?: true
   status?: true
   order?: true
+  slug?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -118,6 +123,7 @@ export type BlogCountAggregateInputType = {
   images?: true
   status?: true
   order?: true
+  slug?: true
   authorId?: true
   createdAt?: true
   updatedAt?: true
@@ -219,6 +225,7 @@ export type BlogGroupByOutputType = {
   images: string[]
   status: boolean
   order: number | null
+  slug: string
   authorId: string
   createdAt: Date
   updatedAt: Date
@@ -256,6 +263,7 @@ export type BlogWhereInput = {
   images?: Prisma.StringNullableListFilter<"Blog">
   status?: Prisma.BoolFilter<"Blog"> | boolean
   order?: Prisma.IntNullableFilter<"Blog"> | number | null
+  slug?: Prisma.StringFilter<"Blog"> | string
   authorId?: Prisma.StringFilter<"Blog"> | string
   createdAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
@@ -272,6 +280,7 @@ export type BlogOrderByWithRelationInput = {
   images?: Prisma.SortOrder
   status?: Prisma.SortOrder
   order?: Prisma.SortOrderInput | Prisma.SortOrder
+  slug?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -282,6 +291,7 @@ export type BlogOrderByWithRelationInput = {
 
 export type BlogWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  slug?: string
   AND?: Prisma.BlogWhereInput | Prisma.BlogWhereInput[]
   OR?: Prisma.BlogWhereInput[]
   NOT?: Prisma.BlogWhereInput | Prisma.BlogWhereInput[]
@@ -297,7 +307,7 @@ export type BlogWhereUniqueInput = Prisma.AtLeast<{
   seriesId?: Prisma.StringNullableFilter<"Blog"> | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
-}, "id">
+}, "id" | "slug">
 
 export type BlogOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -307,6 +317,7 @@ export type BlogOrderByWithAggregationInput = {
   images?: Prisma.SortOrder
   status?: Prisma.SortOrder
   order?: Prisma.SortOrderInput | Prisma.SortOrder
+  slug?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -329,6 +340,7 @@ export type BlogScalarWhereWithAggregatesInput = {
   images?: Prisma.StringNullableListFilter<"Blog">
   status?: Prisma.BoolWithAggregatesFilter<"Blog"> | boolean
   order?: Prisma.IntNullableWithAggregatesFilter<"Blog"> | number | null
+  slug?: Prisma.StringWithAggregatesFilter<"Blog"> | string
   authorId?: Prisma.StringWithAggregatesFilter<"Blog"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Blog"> | Date | string
@@ -343,6 +355,7 @@ export type BlogCreateInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutBlogsInput
@@ -357,6 +370,7 @@ export type BlogUncheckedCreateInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   authorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -371,6 +385,7 @@ export type BlogUpdateInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutBlogsNestedInput
@@ -385,6 +400,7 @@ export type BlogUncheckedUpdateInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -399,6 +415,7 @@ export type BlogCreateManyInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   authorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -413,6 +430,7 @@ export type BlogUpdateManyMutationInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -425,6 +443,7 @@ export type BlogUncheckedUpdateManyInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -457,6 +476,7 @@ export type BlogCountOrderByAggregateInput = {
   images?: Prisma.SortOrder
   status?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -474,6 +494,7 @@ export type BlogMaxOrderByAggregateInput = {
   content?: Prisma.SortOrder
   status?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -487,6 +508,7 @@ export type BlogMinOrderByAggregateInput = {
   content?: Prisma.SortOrder
   status?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -614,6 +636,7 @@ export type BlogCreateWithoutAuthorInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
   series?: Prisma.SeriesCreateNestedOneWithoutPostsInput
@@ -627,6 +650,7 @@ export type BlogUncheckedCreateWithoutAuthorInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
   seriesId?: string | null
@@ -669,6 +693,7 @@ export type BlogScalarWhereInput = {
   images?: Prisma.StringNullableListFilter<"Blog">
   status?: Prisma.BoolFilter<"Blog"> | boolean
   order?: Prisma.IntNullableFilter<"Blog"> | number | null
+  slug?: Prisma.StringFilter<"Blog"> | string
   authorId?: Prisma.StringFilter<"Blog"> | string
   createdAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
@@ -683,6 +708,7 @@ export type BlogCreateWithoutSeriesInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutBlogsInput
@@ -696,6 +722,7 @@ export type BlogUncheckedCreateWithoutSeriesInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   authorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -735,6 +762,7 @@ export type BlogCreateManyAuthorInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
   seriesId?: string | null
@@ -748,6 +776,7 @@ export type BlogUpdateWithoutAuthorInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   series?: Prisma.SeriesUpdateOneWithoutPostsNestedInput
@@ -761,6 +790,7 @@ export type BlogUncheckedUpdateWithoutAuthorInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -774,6 +804,7 @@ export type BlogUncheckedUpdateManyWithoutAuthorInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   seriesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -787,6 +818,7 @@ export type BlogCreateManySeriesInput = {
   images?: Prisma.BlogCreateimagesInput | string[]
   status?: boolean
   order?: number | null
+  slug: string
   authorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -800,6 +832,7 @@ export type BlogUpdateWithoutSeriesInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutBlogsNestedInput
@@ -813,6 +846,7 @@ export type BlogUncheckedUpdateWithoutSeriesInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -826,6 +860,7 @@ export type BlogUncheckedUpdateManyWithoutSeriesInput = {
   images?: Prisma.BlogUpdateimagesInput | string[]
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -841,6 +876,7 @@ export type BlogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   images?: boolean
   status?: boolean
   order?: boolean
+  slug?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -857,6 +893,7 @@ export type BlogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   images?: boolean
   status?: boolean
   order?: boolean
+  slug?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -873,6 +910,7 @@ export type BlogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   images?: boolean
   status?: boolean
   order?: boolean
+  slug?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -889,13 +927,14 @@ export type BlogSelectScalar = {
   images?: boolean
   status?: boolean
   order?: boolean
+  slug?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   seriesId?: boolean
 }
 
-export type BlogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "content" | "images" | "status" | "order" | "authorId" | "createdAt" | "updatedAt" | "seriesId", ExtArgs["result"]["blog"]>
+export type BlogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "content" | "images" | "status" | "order" | "slug" | "authorId" | "createdAt" | "updatedAt" | "seriesId", ExtArgs["result"]["blog"]>
 export type BlogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   series?: boolean | Prisma.Blog$seriesArgs<ExtArgs>
@@ -923,6 +962,7 @@ export type $BlogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     images: string[]
     status: boolean
     order: number | null
+    slug: string
     authorId: string
     createdAt: Date
     updatedAt: Date
@@ -1359,6 +1399,7 @@ export interface BlogFieldRefs {
   readonly images: Prisma.FieldRef<"Blog", 'String[]'>
   readonly status: Prisma.FieldRef<"Blog", 'Boolean'>
   readonly order: Prisma.FieldRef<"Blog", 'Int'>
+  readonly slug: Prisma.FieldRef<"Blog", 'String'>
   readonly authorId: Prisma.FieldRef<"Blog", 'String'>
   readonly createdAt: Prisma.FieldRef<"Blog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Blog", 'DateTime'>

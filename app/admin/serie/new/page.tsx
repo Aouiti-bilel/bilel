@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Trash2, Upload } from "lucide-react";
+import { Editor } from "@tinymce/tinymce-react";
 
 export default function NewSeriesForm() {
     const [coverImage, setCoverImage] = useState<string | null>(null);
@@ -33,11 +34,25 @@ export default function NewSeriesForm() {
             />
 
             {/* Description */}
-            <Textarea
-                name="description"
-                placeholder="Series Description"
-            />
+            <Editor
+                apiKey="rk0j2ac4vzoanqc5lmp4mqu780w0t7bnlxjrk86caur5bd7l"
+                textareaName="description"
+                init={{
+                    height: 400,
+                    menubar: 'file edit view insert format tools table tc help',
+                    // plugins: ["lists", "link", "image", "table", "code"],
+                    plugins: 'preview visualblocks visualchars fullscreen image link media  codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   imagetools textpattern noneditable help    quickbars  emoticons  ',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist  | forecolor backcolor casechange   removeformat | pagebreak | charmap emoticons | fullscreen  preview | image media  anchor codesample | a11ycheck ltr rtl |  ',
+                    mobile: {
+                        theme: 'mobile',
+                        toolbar: ['undo', 'bold']
+                    },
+                    theme_advanced_toolbar_align: 'center',
+                    autosave_interval: '3s',
 
+                    content_css: 'default'
+                }}
+            />
             {/* Cover Image */}
             <div className="space-y-2">
                 <Label>Cover Image</Label>
