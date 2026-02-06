@@ -12,11 +12,11 @@ import { Upload, ImageIcon, CheckCircle2, Loader2, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { createPost } from "../actions";
 import { SeriesField } from "../SeriesField";
-import { Series } from "@/app/generated/prisma/browser";
+import { Serie } from "@/app/generated/prisma/browser";
 
 
 
-export default function NewPost({ series }: { series: Series[] }) {
+export default function NewPost({ series }: { series: Serie[] }) {
     const [images, setImages] = useState<File[]>([]);
     const [previews, setPreviews] = useState<string[]>([]);
 

@@ -4,6 +4,7 @@
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { put } from "@vercel/blob";
+import { slugifyFrench } from "@/lib/utils";
 
 
 type ActionState = {
@@ -16,23 +17,23 @@ export async function createSeries(_: ActionState, formData: FormData): Promise<
   const title = formData.get("title")?.toString().trim();
   const description = (formData.get("description")?.toString() ?? "").trim();
   const coverImage = formData.get("coverImage") as File
-  if (!title) throw new Error("Title is required");
+  const content = formData.get("content")?.toString() as string;
+    if (!title) throw new Error("Title is required");
   /* -------------------------
    * 2. Upload images
    * ------------------------- */
-  console.log("UPLOAD COVER IMAGE:", coverImage);
   const coverImageBlob = await put(
     `series/${Date.now()}-${title}-cover`,
-    coverImage ,
+    coverImage,
     {
       access: "public",
       addRandomSuffix: true,
     }
   );
-  const slug = title.toLowerCase().replace(/\s+/g, "-");
+  const slug = slugifyFrench(title);
   try {
-    await prisma.series.create({
-      data: { title, description, coverImage: coverImageBlob.url, slug },
+    await prisma.serie.create({
+      data: { title, description, coverImage: coverImageBlob.url, slug, content },
     });
 
     return { success: true };
@@ -47,14 +48,14 @@ export async function createSeries(_: ActionState, formData: FormData): Promise<
 }
 
 export async function deleteSerie(serieId: string) {
-    if (!serieId) {
-        throw new Error("Serie ID is required");
-    }
+  if (!serieId) {
+    throw new Error("Serie ID is required");
+  }
 
-    await prisma.series.delete({
-        where: { id: serieId },
-    });
+  await prisma.serie.delete({
+    where: { id: serieId },
+  });
 
-    // refresh admin list
-    revalidatePath("/admin/serie");
+  // refresh admin list
+  revalidatePath("/admin/serie");
 }

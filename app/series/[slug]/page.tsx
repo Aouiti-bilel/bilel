@@ -9,7 +9,7 @@ interface Props {
 export default async function SeriesPage({ params }: Props) {
     const props = await params;
     const slug =  props.slug;
-    const series = await prisma.series.findUnique({
+    const series = await prisma.serie.findUnique({
         where: { slug: slug },
         include: {
             posts: {

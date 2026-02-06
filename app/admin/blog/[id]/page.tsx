@@ -15,7 +15,7 @@ export default async function Blog(props: Props) {
     const blog = await prisma.blog.findUnique({
         where: { id },
     });
-    const series = await prisma.series.findMany({
+    const series = await prisma.serie.findMany({
         include: { posts: { where: { status: true }, orderBy: { order: 'asc' } } }
     });
     if (id === "new") {

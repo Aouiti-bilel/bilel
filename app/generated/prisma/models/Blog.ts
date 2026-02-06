@@ -269,7 +269,7 @@ export type BlogWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   seriesId?: Prisma.StringNullableFilter<"Blog"> | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  series?: Prisma.XOR<Prisma.SerieNullableScalarRelationFilter, Prisma.SerieWhereInput> | null
 }
 
 export type BlogOrderByWithRelationInput = {
@@ -286,7 +286,7 @@ export type BlogOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
-  series?: Prisma.SeriesOrderByWithRelationInput
+  series?: Prisma.SerieOrderByWithRelationInput
 }
 
 export type BlogWhereUniqueInput = Prisma.AtLeast<{
@@ -306,7 +306,7 @@ export type BlogWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Blog"> | Date | string
   seriesId?: Prisma.StringNullableFilter<"Blog"> | string | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  series?: Prisma.XOR<Prisma.SerieNullableScalarRelationFilter, Prisma.SerieWhereInput> | null
 }, "id" | "slug">
 
 export type BlogOrderByWithAggregationInput = {
@@ -359,7 +359,7 @@ export type BlogCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutBlogsInput
-  series?: Prisma.SeriesCreateNestedOneWithoutPostsInput
+  series?: Prisma.SerieCreateNestedOneWithoutPostsInput
 }
 
 export type BlogUncheckedCreateInput = {
@@ -389,7 +389,7 @@ export type BlogUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutBlogsNestedInput
-  series?: Prisma.SeriesUpdateOneWithoutPostsNestedInput
+  series?: Prisma.SerieUpdateOneWithoutPostsNestedInput
 }
 
 export type BlogUncheckedUpdateInput = {
@@ -639,7 +639,7 @@ export type BlogCreateWithoutAuthorInput = {
   slug: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  series?: Prisma.SeriesCreateNestedOneWithoutPostsInput
+  series?: Prisma.SerieCreateNestedOneWithoutPostsInput
 }
 
 export type BlogUncheckedCreateWithoutAuthorInput = {
@@ -779,7 +779,7 @@ export type BlogUpdateWithoutAuthorInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  series?: Prisma.SeriesUpdateOneWithoutPostsNestedInput
+  series?: Prisma.SerieUpdateOneWithoutPostsNestedInput
 }
 
 export type BlogUncheckedUpdateWithoutAuthorInput = {
@@ -952,7 +952,7 @@ export type $BlogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Blog"
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
-    series: Prisma.$SeriesPayload<ExtArgs> | null
+    series: Prisma.$SeriePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1362,7 +1362,7 @@ readonly fields: BlogFieldRefs;
 export interface Prisma__BlogClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  series<T extends Prisma.Blog$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Blog$seriesArgs<ExtArgs>>): Prisma.Prisma__SeriesClient<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  series<T extends Prisma.Blog$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Blog$seriesArgs<ExtArgs>>): Prisma.Prisma__SerieClient<runtime.Types.Result.GetResult<Prisma.$SeriePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1804,18 +1804,18 @@ export type BlogDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
  */
 export type Blog$seriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Series
+   * Select specific fields to fetch from the Serie
    */
-  select?: Prisma.SeriesSelect<ExtArgs> | null
+  select?: Prisma.SerieSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Series
+   * Omit specific fields from the Serie
    */
-  omit?: Prisma.SeriesOmit<ExtArgs> | null
+  omit?: Prisma.SerieOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SeriesInclude<ExtArgs> | null
-  where?: Prisma.SeriesWhereInput
+  include?: Prisma.SerieInclude<ExtArgs> | null
+  where?: Prisma.SerieWhereInput
 }
 
 /**

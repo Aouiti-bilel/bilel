@@ -386,7 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Blog: 'Blog',
-  Series: 'Series'
+  Serie: 'Serie'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "blog" | "series"
+    modelProps: "user" | "blog" | "serie"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -554,77 +554,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Series: {
-      payload: Prisma.$SeriesPayload<ExtArgs>
-      fields: Prisma.SeriesFieldRefs
+    Serie: {
+      payload: Prisma.$SeriePayload<ExtArgs>
+      fields: Prisma.SerieFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.SeriesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload> | null
+          args: Prisma.SerieFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.SeriesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         findFirst: {
-          args: Prisma.SeriesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload> | null
+          args: Prisma.SerieFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.SeriesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         findMany: {
-          args: Prisma.SeriesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+          args: Prisma.SerieFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>[]
         }
         create: {
-          args: Prisma.SeriesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         createMany: {
-          args: Prisma.SeriesCreateManyArgs<ExtArgs>
+          args: Prisma.SerieCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.SeriesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+          args: Prisma.SerieCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>[]
         }
         delete: {
-          args: Prisma.SeriesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         update: {
-          args: Prisma.SeriesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         deleteMany: {
-          args: Prisma.SeriesDeleteManyArgs<ExtArgs>
+          args: Prisma.SerieDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.SeriesUpdateManyArgs<ExtArgs>
+          args: Prisma.SerieUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.SeriesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>[]
+          args: Prisma.SerieUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>[]
         }
         upsert: {
-          args: Prisma.SeriesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriesPayload>
+          args: Prisma.SerieUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeriePayload>
         }
         aggregate: {
-          args: Prisma.SeriesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSeries>
+          args: Prisma.SerieAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSerie>
         }
         groupBy: {
-          args: Prisma.SeriesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SeriesGroupByOutputType>[]
+          args: Prisma.SerieGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SerieGroupByOutputType>[]
         }
         count: {
-          args: Prisma.SeriesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SeriesCountAggregateOutputType> | number
+          args: Prisma.SerieCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SerieCountAggregateOutputType> | number
         }
       }
     }
@@ -698,17 +698,18 @@ export const BlogScalarFieldEnum = {
 export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
 
 
-export const SeriesScalarFieldEnum = {
+export const SerieScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
   title: 'title',
+  content: 'content',
   description: 'description',
   coverImage: 'coverImage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
+export type SerieScalarFieldEnum = (typeof SerieScalarFieldEnum)[keyof typeof SerieScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -900,7 +901,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   blog?: Prisma.BlogOmit
-  series?: Prisma.SeriesOmit
+  serie?: Prisma.SerieOmit
 }
 
 /* Types for Logging */

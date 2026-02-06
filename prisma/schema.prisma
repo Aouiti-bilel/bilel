@@ -32,20 +32,20 @@ model Blog {
   images      String[]
   status      Boolean  @default(false)
   order       Int? // order inside the series
-  slug        String  @unique
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  series    Series?  @relation(fields: [seriesId], references: [id])
-  seriesId  String?
-
+  slug        String   @unique
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  series      Serie?   @relation(fields: [seriesId], references: [id])
+  seriesId    String?
 }
 
-model Series {
+model Serie {
   id          String  @id @default(cuid())
   slug        String  @unique
   title       String
+  content     String
   description String?
   coverImage  String? // hero image or card image
 

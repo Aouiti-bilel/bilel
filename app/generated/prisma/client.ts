@@ -50,7 +50,7 @@ export type User = Prisma.UserModel
  */
 export type Blog = Prisma.BlogModel
 /**
- * Model Series
+ * Model Serie
  * 
  */
-export type Series = Prisma.SeriesModel
+export type Serie = Prisma.SerieModel

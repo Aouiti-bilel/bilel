@@ -7,6 +7,7 @@ interface SeriesDetailsProps {
   series: {
     title: string;
     description?: string | null;
+    content?: string | null;
     coverImage?: string | null;
     posts: {
       id: string;
@@ -36,12 +37,11 @@ export default function SeriesDetails({ series }: SeriesDetailsProps) {
         )}
 
         <div className="space-y-3">
-          <h1 className="text-4xl font-bold">{series.title}</h1>
-          {series.description && (
-           <p
-                    className="rich-content"
-                    dangerouslySetInnerHTML={{ __html: series.description }}
-                />      
+          {series.content && (
+            <div
+              className="rich-content"
+              dangerouslySetInnerHTML={{ __html: series.content }}
+            />
           )}
         </div>
       </div>
