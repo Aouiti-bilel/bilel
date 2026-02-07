@@ -10,14 +10,14 @@ import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
 import { Upload, Trash2 } from "lucide-react";
 import { updateBlog } from "../actions";
-import { Blog, Series } from "@/app/generated/prisma/browser";
+import { Blog, Serie } from "@/app/generated/prisma/browser";
 import { SeriesField } from "../SeriesField";
 
 
 
 type Props = {
     blog: Blog;
-    series: Series[];
+    series: Serie[];
 };
 
 export default function EditPost({ blog, series }: Props) {

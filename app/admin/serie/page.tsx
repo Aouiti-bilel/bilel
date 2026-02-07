@@ -6,7 +6,7 @@ import { DeleteSerieButton } from "./DeleteSerieButton";
 import Image from "next/image";
 
 export default async function SeriesAdminPage() {
-  const series = await prisma.series.findMany({
+  const series = await prisma.serie.findMany({
     include: { posts: true },
     orderBy: { createdAt: "desc" },
   });

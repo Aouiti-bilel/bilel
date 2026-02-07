@@ -3,12 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Series } from "@/app/generated/prisma/browser";
+import { Serie } from "@/app/generated/prisma/browser";
 
 
 
 interface Props {
-  series: Series[];
+  series: Serie[];
 }
 
 export default function SeriesComp({ series }: Props) {

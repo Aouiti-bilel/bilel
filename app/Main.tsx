@@ -5,12 +5,12 @@ import ProjectsHero from "@/components/ProjectsHero";
 import ModulesHero from "@/components/ModulesHero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Blog, Series } from "./generated/prisma/browser";
+import { Serie } from "./generated/prisma/browser";
 import SeriesComp from "@/components/SeriesComp";
 
 
 type Props = {
-    series: Series[]
+    series: Serie[]
 }
 export default function HomePage({ series }: Props) {
     return (

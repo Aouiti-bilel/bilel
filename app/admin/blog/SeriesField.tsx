@@ -1,6 +1,6 @@
 "use client";
 
-import { Series } from "@/app/generated/prisma/browser";
+import { Serie } from "@/app/generated/prisma/browser";
 import {
     Select,
     SelectContent,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 
 type SeriesFieldProps = {
-    series: Series[],
+    series: Serie[],
     defaultValue: string | null
 }
 export function SeriesField({ series, defaultValue }: SeriesFieldProps) {
