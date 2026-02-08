@@ -12,6 +12,7 @@ interface Props {
 }
 
 export default function SeriesComp({ series }: Props) {
+  console.log("Series data:");
   if (!series.length) return null;
   return (
     <section className="container mx-auto px-4 py-20">
